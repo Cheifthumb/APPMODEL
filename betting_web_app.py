@@ -29,21 +29,17 @@ if uploaded_file:
     edited_df = st.data_editor(edit_df, num_rows="dynamic", use_container_width=True)
 
     if st.button("✅ Confirm SP Updates and Run Model"):
-        # Merge back the edited SPs into the original df
+        # Merge updates
         df.set_index(['Date of Race', 'Time', 'Horse'], inplace=True)
         edited_df.set_index(['Date of Race', 'Time', 'Horse'], inplace=True)
         df.update(edited_df)
         df.reset_index(inplace=True)
 
-        # Recalculate SP Fav based on lowest Industry SP per race
+        # Recalculate dependent features
         df['SP Fav'] = df.groupby(['Date of Race', 'Track'])['Industry SP'].transform(lambda x: x == x.min())
-        f['SP Fav'] = df['SP Fav'].map({True: 'Fav', False: ''})
-
-
-    df['Date of Race'] = pd.to_datetime(df['Date of Race'], errors='coerce')
-    df = df[df['Date of Race'].notnull()]
-    df['Industry SP'] = pd.to_numeric(df['Industry SP'], errors='coerce')
-    df = df[df['Industry SP'].notnull()]
+        df['SP Fav'] = df['SP Fav'].map({True: 'Fav', False: ''})
+        df['SP Rank'] = df.groupby(['Date of Race', 'Track'])['Industry SP'].rank(method='min')
+        df['Is Favourite'] = df['SP Fav'].apply(lambda x: 1 if str(x).strip().lower() == 'fav' else 0)
 
     numeric_cols = [
         'Forecasted Odds', 'Industry SP', 'SP Win Return',
@@ -59,10 +55,6 @@ if uploaded_file:
         df['Days Since Last time out'] = df.groupby('Horse')['Date of Race'].diff().dt.days
 
     df['Log Industry SP'] = df['Industry SP'].apply(lambda x: pd.NA if pd.isna(x) or x <= 0 else np.log(x))
-    if 'SP Fav' in df.columns:
-        df['Is Favourite'] = df['SP Fav'].apply(lambda x: 1 if str(x).strip().lower() == 'fav' else 0)
-    if 'Industry SP' in df.columns and 'Track' in df.columns:
-        df['SP Rank'] = df.groupby(['Date of Race', 'Track'])['Industry SP'].rank(method='min')
     if 'Up in Trip' in df.columns:
         df['Up in Trip'] = df['Up in Trip'].apply(lambda x: 1 if str(x).strip().lower() == 'yes' else 0)
 
