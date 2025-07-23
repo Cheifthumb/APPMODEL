@@ -36,9 +36,9 @@ if uploaded_file:
         df.reset_index(inplace=True)
 
         # Recalculate SP Fav based on lowest Industry SP per race
-        df['SP Fav'] = df.groupby(['Date of Race', 'Time', 'Track'])['Industry SP'].transform(
-            lambda x: ['Fav' if val == x.min() else '' for val in x]
-        )
+        df['SP Fav'] = df.groupby(['Date of Race', 'Track'])['Industry SP'].transform(lambda x: x == x.min())
+        f['SP Fav'] = df['SP Fav'].map({True: 'Fav', False: ''})
+
 
     df['Date of Race'] = pd.to_datetime(df['Date of Race'], errors='coerce')
     df = df[df['Date of Race'].notnull()]
