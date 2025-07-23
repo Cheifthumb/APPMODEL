@@ -5,6 +5,24 @@ git remote add origin https://github.com/chiefthumb/your-new-repo.git
 git remote -v
 
 git add .
-git commit -m "Initial commit for  WDR model"
+git commit -m "Initial commit for  APP model"
 
+git push -u origin main
+
+cd D:\OneDrive\Python\App
+
+# 1. Initialize Git in this folder
+git init
+
+# 2. Add all files to the staging area
+git add .
+
+# 3. Commit the files
+git commit -m "Initial commit for APP model"
+
+# 4. Add your remote GitHub repo
+git remote add origin https://github.com/Cheifthumb/APPMODEL.git
+
+# 5. Push the code to GitHub (first time use -u to set upstream)
+git branch -M main
 git push -u origin main
