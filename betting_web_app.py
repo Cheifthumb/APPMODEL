@@ -213,7 +213,10 @@ if uploaded_file:
     # REVERSE FORECAST BETS — PAIRED DISPLAY
     st.subheader("🔁 Final Reverse Forecast Bets (Paired)")
 
-    reverse_bets = final_df[(final_df['Bet_Recommended']) & (final_df['Betting_Mode'] == 'reverse_forecast')].copy()
+    reverse_bets = final_df[
+        (final_df['Bet_Recommended']) & 
+        (final_df['Betting_Mode'].str.startswith("reverse_forecast"))
+    ].copy()
 
     pairs = []
     for race_id, group in reverse_bets.groupby('Race_ID'):
