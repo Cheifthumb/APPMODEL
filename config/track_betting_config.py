@@ -72,7 +72,8 @@ track_betting_config = {
             "stake_mode": "split_half"   
      
         }
-     },"ASCOT": {
+     },
+     "ASCOT": {
         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.1,
