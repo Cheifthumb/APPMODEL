@@ -20,26 +20,55 @@ if uploaded_file:
     with open(input_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     st.success(f"Uploaded {file_name}")
-
+    
     df = pd.read_excel(input_path)
-    editable_cols = ['Date of Race', 'Track','Time', 'Horse', 'Industry SP']
+    df['Industry SP'] = pd.to_numeric(df['Industry SP'], errors='coerce')
+
+    editable_cols = ['Date of Race', 'Track', 'Time', 'Horse', 'Industry SP']
     edit_df = df[editable_cols].copy()
 
-    st.subheader("✍️ Update Industry SPs Before Prediction")
-    edited_df = st.data_editor(edit_df, num_rows="dynamic", use_container_width=True)
+    if 'sp_preview' not in st.session_state:
+        st.session_state['sp_preview'] = pd.DataFrame()
 
+    st.subheader("✍️ Update Industry SPs Before Prediction")
+    edited_df = st.data_editor(edit_df, num_rows="dynamic", use_container_width=True, key="editable_sp")
+
+    # Button to recalculate SP Fav (as rank numbers)
+    if st.button("🔄 Recalculate SP Fav (Rank Numbers)"):
+        # Update df with SP edits
+        df.set_index(['Date of Race', 'Time', 'Horse'], inplace=True)
+        edited_df.set_index(['Date of Race', 'Time', 'Horse'], inplace=True)
+        df.update(edited_df)
+        df.reset_index(inplace=True)
+        edited_df.reset_index(inplace=True)
+
+        # Create Race_ID and calculate rank
+        df['Race_ID'] = df['Date of Race'].astype(str) + "_" + df['Time'].astype(str) + "_" + df['Track'].astype(str)
+        df['Industry SP'] = pd.to_numeric(df['Industry SP'], errors='coerce')
+
+        # ✅ Assign numeric SP rank to the SP Fav column
+        df['SP Fav'] = df.groupby('Race_ID')['Industry SP'].rank(method='min')
+
+        # Optional: also assign Is Favourite (for your eyes)
+        df['Is Favourite'] = df['SP Fav'].apply(lambda x: 1 if x == 1 else 0)
+
+        # Show preview
+        preview = df[['Date of Race', 'Time', 'Track', 'Horse', 'Industry SP', 'SP Fav']]
+        st.session_state['sp_preview'] = preview.copy()
+
+    # Show the SP Fav rank preview
+    if not st.session_state['sp_preview'].empty:
+        st.subheader("📊 SP Fav Rank Preview (1 = favourite)")
+        st.dataframe(st.session_state['sp_preview'])
+
+    # Confirm to update and proceed
     if st.button("✅ Confirm SP Updates and Run Model"):
-        # Merge updates
         df.set_index(['Date of Race', 'Time', 'Horse'], inplace=True)
         edited_df.set_index(['Date of Race', 'Time', 'Horse'], inplace=True)
         df.update(edited_df)
         df.reset_index(inplace=True)
 
-        # Recalculate dependent features
-        df['SP Fav'] = df.groupby(['Date of Race', 'Track'])['Industry SP'].transform(lambda x: x == x.min())
-        df['SP Fav'] = df['SP Fav'].map({True: 'Fav', False: ''})
-        df['SP Rank'] = df.groupby(['Date of Race', 'Track'])['Industry SP'].rank(method='min')
-        df['Is Favourite'] = df['SP Fav'].apply(lambda x: 1 if str(x).strip().lower() == 'fav' else 0)
+
 
     numeric_cols = [
         'Forecasted Odds', 'Industry SP', 'SP Win Return',
@@ -55,8 +84,17 @@ if uploaded_file:
         df['Days Since Last time out'] = df.groupby('Horse')['Date of Race'].diff().dt.days
 
     df['Log Industry SP'] = df['Industry SP'].apply(lambda x: pd.NA if pd.isna(x) or x <= 0 else np.log(x))
+    
     if 'Up in Trip' in df.columns:
         df['Up in Trip'] = df['Up in Trip'].apply(lambda x: 1 if str(x).strip().lower() == 'yes' else 0)
+    
+        # ✅ Recalculate SP Rank and Fav after cleaning
+    df['Race_ID'] = df['Date of Race'].astype(str) + "_" + df['Time'].astype(str) + "_" + df['Track'].astype(str)
+
+    df['SP Fav'] = df.groupby('Race_ID')['Industry SP'].rank(method='min')
+    df['Race_ID'] = df['Date of Race'].astype(str) + "_" + df['Time'].astype(str) + "_" + df['Track'].astype(str)
+    df['SP Rank'] = df.groupby('Race_ID')['Industry SP'].rank(method='min')
+    df['Is Favourite'] = df['SP Fav'].apply(lambda x: 1 if str(x).strip().lower() == 'fav' else 0)
 
     # Feature engineering
     df['Win Rate Last 5'] = df['Wins Last 5 races'] / df['Total Prev Races'].replace(0, pd.NA)
