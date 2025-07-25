@@ -127,7 +127,7 @@ track_betting_config = {
             "allowed_field_sizes": [8],
             "allowed_predicted_ranks": [1,4],
             "min_ev_threshold": -5.0,
-            "min_kelly_fraction": -1,
+            "min_kelly_fraction": -1.0,
             "stake_mode": "split_half",  # special logic: A→B + B→A
         } 
      }
