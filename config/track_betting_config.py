@@ -131,7 +131,7 @@ track_betting_config = {
             "stake_mode": "split_half",  # special logic: A→B + B→A
         } 
       },
-     "SALISBURY": {
+      "SALISBURY": {
         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.1,
@@ -159,5 +159,7 @@ track_betting_config = {
             "min_kelly_fraction": -1.0,
             "stake_mode": "split_half",  # special logic: A→B + B→A  
      }
+    
     }
+
 }
