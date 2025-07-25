@@ -117,7 +117,7 @@ track_betting_config = {
             "allowed_field_sizes": [4,5,6, 7],
         },
         "reverse_forecast_a": {
-            "allowed_field_sizes": [7],
+            "allowed_field_sizes": [6,7],
             "allowed_predicted_ranks": [2,3],
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -0.5,
