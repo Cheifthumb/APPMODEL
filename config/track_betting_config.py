@@ -106,7 +106,7 @@ track_betting_config = {
         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.1,
-            "min_kelly_fraction": 0.1,
+            "min_kelly_fraction": 1,
             "max_odds_threshold": 15.1,
             "min_odds_threshold": 1.5,
             "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
