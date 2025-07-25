@@ -134,16 +134,16 @@ track_betting_config = {
       "SALISBURY": {
         "single": {
             "bankroll_perc": 0.1,
-            "min_ev_threshold": 0.1,
-            "min_kelly_fraction": 1,
-            "max_odds_threshold": 15.1,
+            "min_ev_threshold": 0.00,
+            "min_kelly_fraction": 0.00,
+            "max_odds_threshold": 10.1,
             "min_odds_threshold": 1.5,
             "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
             "fixed_stake_perc": 0.01,
             "winrate_filter_type": "none",      # 'none', 'fixed', or 'dynamic'
             "fixed_winrate_threshold": 0.03,
             "allowed_predicted_ranks": [1,2,3,4,5],
-            "allowed_field_sizes": [4,5,6, 7],
+            "allowed_field_sizes": [5],
         },
         "reverse_forecast_a": {
             "allowed_field_sizes": [5,6,7],
