@@ -158,8 +158,8 @@ track_betting_config = {
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -1.0,
             "stake_mode": "split_half",  # special logic: A→B + B→A  
-     }
+        }
     
-    }
+     }
 
 }
