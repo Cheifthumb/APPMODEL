@@ -124,10 +124,10 @@ track_betting_config = {
             "stake_mode": "split_half",  # special logic: A→B + B→A
         },
         "reverse_forecast_B": {
-            "allowed_field_sizes": [4],
-            "allowed_predicted_ranks": [2,3],
+            "allowed_field_sizes": [8],
+            "allowed_predicted_ranks": [1,4],
             "min_ev_threshold": -5.0,
-            "min_kelly_fraction": -0.5,
+            "min_kelly_fraction": -1,
             "stake_mode": "split_half",  # special logic: A→B + B→A
         } 
      }
