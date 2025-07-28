@@ -22,6 +22,13 @@ if uploaded_file:
         f.write(uploaded_file.getbuffer())
     st.success(f"Uploaded {file_name}")
     
+    # 💰 User Bankroll Input
+    st.subheader("💰 Bankroll Setup")
+    bankroll = st.number_input("Enter your bankroll for today (£):", min_value=0.0, value=1000.0, step=50.0, format="%.2f")
+    bankroll_1pct = bankroll * 0.01
+    st.caption(f"💡 1% of bankroll: £{bankroll_1pct:.2f}")
+
+
     df = pd.read_excel(input_path)
     df['Industry SP'] = pd.to_numeric(df['Industry SP'], errors='coerce')
 
@@ -184,7 +191,7 @@ if uploaded_file:
             preds.loc[preds['Predicted_Win_Probability'] <= preds['Winrate_Threshold'], 'Reject_Reason'] += 'winrate_low|'
             preds['Bet_Recommended'] = preds['Reject_Reason'] == ''
 
-            stake_pool = 10000 * config.get("bankroll_perc", 0.1)
+            stake_pool = bankroll * config.get("bankroll_perc", 0.1)
             preds['Recommended_Stake'] = 0
             for race_id, group in preds.groupby('Race_ID'):
                 group['Stake_Unscaled'] = group['Kelly_Fraction'] * stake_pool
