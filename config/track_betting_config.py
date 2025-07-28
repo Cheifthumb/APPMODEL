@@ -160,6 +160,39 @@ track_betting_config = {
             "stake_mode": "split_half",  # special logic: A→B + B→A  
         }
     
+        },
+        "WINDSOR":  {
+        "single": {
+            "bankroll_perc": 0.1,
+            "min_ev_threshold": 0.00,
+            "min_kelly_fraction": 1,
+            "max_odds_threshold": 10.1,
+            "min_odds_threshold": 1.5,
+            "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
+            "fixed_stake_perc": 0.01,
+            "winrate_filter_type": "none",      # 'none', 'fixed', or 'dynamic'
+            "fixed_winrate_threshold": 0.03,
+            "allowed_predicted_ranks": [1],
+            "allowed_field_sizes": [2],
+        },
+        "reverse_forecast_a": {
+            "allowed_field_sizes": [10,11],
+            "allowed_predicted_ranks": [1,2],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -1,
+            "stake_mode": "split_half",  # special logic: A→B + B→A
+        },
+        "reverse_forecast_B": {
+            "allowed_field_sizes": [2],
+            "allowed_predicted_ranks": [1],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": 1,
+            "stake_mode": "split_half",  # special logic: A→B + B→A  
+        }
+    
      }
+
+
+     
 
 }
