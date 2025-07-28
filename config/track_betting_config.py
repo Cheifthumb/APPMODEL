@@ -2,8 +2,17 @@
 track_model_map = {
     "SANDOWN": "NATIONAL_HUNT_model",
     "FFOS LAS": "NATIONAL_HUNT_model",
-    # add more as needed
+    "ASCOT": "ASCOT_model",
+    "SALISBURY": "SALISBURY_model",
+    "NEWBURY": "NEWBURY_model",
+    "NEWMARKET": "NEWMARKET_model",
+    "WINDSOR": "WINDSOR_model",
+    "RIPON": "RIPON_model",
+    "REDCAR": "REDCAR_model",
+    "NEWTON ABBOT": "NEWTON_ABBOT_model"
+    # Add more as needed
 }
+
 
 
 track_betting_config = {
