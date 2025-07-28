@@ -5,6 +5,7 @@ import os
 import joblib
 from sklearn.preprocessing import LabelEncoder
 from config.track_betting_config import track_betting_config
+from config.track_betting_config import track_model_map
 
 #python -m streamlit run betting_web_app.py
 
@@ -125,10 +126,13 @@ if uploaded_file:
             st.warning(f"⚠️ No config for {track} — skipping.")
             continue
 
-        model_path = f"models/{track}_model.pkl"
-        if not os.path.exists(model_path):
+        model_name = track_model_map.get(track)
+        if not model_name:
             st.warning(f"⚠️ No model for {track} — skipping.")
             continue
+
+        model_path = f"models/{model_name}.pkl"
+
 
         try:
             model = joblib.load(model_path)

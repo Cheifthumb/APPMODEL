@@ -6,9 +6,6 @@ track_model_map = {
 }
 
 
-
-
-
 track_betting_config = {
     "NEWMARKET": {
         "single": {
