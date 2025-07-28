@@ -4,15 +4,30 @@ import numpy as np
 import os
 import joblib
 from sklearn.preprocessing import LabelEncoder
-from config.track_betting_config import track_betting_config
-from config.track_betting_config import track_model_map
+from config.track_betting_config import track_betting_config, track_model_map
 
-#python -m streamlit run betting_web_app.py
+# Run with: python -m streamlit run betting_web_app.py
 
 st.set_page_config(page_title="Horse Racing Bets", layout="wide")
 st.title("🏇 Horse Racing Prediction and Bet Selector")
 
+# 💰 Bankroll input comes first — sticky in session
+st.subheader("💰 Bankroll Setup")
+if 'bankroll' not in st.session_state:
+    st.session_state['bankroll'] = 1000.0  # default
+
+st.session_state['bankroll'] = st.number_input(
+    "Enter your bankroll for today (£):",
+    min_value=0.0,
+    value=st.session_state['bankroll'],
+    step=50.0,
+    format="%.2f"
+)
+st.caption(f"💡 1% of bankroll: £{st.session_state['bankroll'] * 0.01:.2f}")
+
+# Upload Excel race file
 uploaded_file = st.file_uploader("📤 Upload your Excel race file", type=["xlsx"])
+
 
 if uploaded_file:
     file_name = uploaded_file.name
@@ -22,13 +37,6 @@ if uploaded_file:
         f.write(uploaded_file.getbuffer())
     st.success(f"Uploaded {file_name}")
     
-    # 💰 User Bankroll Input
-    st.subheader("💰 Bankroll Setup")
-    bankroll = st.number_input("Enter your bankroll for today (£):", min_value=0.0, value=1000.0, step=50.0, format="%.2f")
-    bankroll_1pct = bankroll * 0.01
-    st.caption(f"💡 1% of bankroll: £{bankroll_1pct:.2f}")
-
-
     df = pd.read_excel(input_path)
     df['Industry SP'] = pd.to_numeric(df['Industry SP'], errors='coerce')
 
@@ -191,6 +199,7 @@ if uploaded_file:
             preds.loc[preds['Predicted_Win_Probability'] <= preds['Winrate_Threshold'], 'Reject_Reason'] += 'winrate_low|'
             preds['Bet_Recommended'] = preds['Reject_Reason'] == ''
 
+            bankroll = st.session_state['bankroll']
             stake_pool = bankroll * config.get("bankroll_perc", 0.1)
             preds['Recommended_Stake'] = 0
             for race_id, group in preds.groupby('Race_ID'):
