@@ -10,7 +10,7 @@ track_model_map = {
     "RIPON": "RIPON_model",
     "REDCAR": "REDCAR_model",
     "NEWTON ABBOT": "NEWTON_ABBOT_model",
-    "EPSOM": "EPSOM_model"
+    "EPSOM": "FLAT_model"
     # Add more as needed
 }
 
