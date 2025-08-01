@@ -10,7 +10,8 @@ track_model_map = {
     "RIPON": "RIPON_model",
     "REDCAR": "REDCAR_model",
     "NEWTON ABBOT": "NEWTON_ABBOT_model",
-    "EPSOM": "FLAT_model"
+    "EPSOM": "FLAT_model",
+    "BATH": "FLAT_model"
     # Add more as needed
 }
 
@@ -43,6 +44,15 @@ track_betting_config = {
         "reverse_forecast_a": {
             "allowed_field_sizes": [6],
             "allowed_predicted_ranks": [1, 2],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half"
+        }
+    },
+    "BATH": {
+        "reverse_forecast_a": {
+            "allowed_field_sizes": [8],
+            "allowed_predicted_ranks": [1,4],
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -0.5,
             "stake_mode": "split_half"
