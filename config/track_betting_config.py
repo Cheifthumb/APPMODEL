@@ -132,9 +132,9 @@ track_betting_config = {
             "stake_mode": "split_half"   
      
         }  
-    },
-    "DONCASTER": {
-        "single": {
+     },
+     "DONCASTER": {
+         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.00,
             "min_kelly_fraction": 0.001,
