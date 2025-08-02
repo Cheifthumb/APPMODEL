@@ -2,6 +2,7 @@
 track_model_map = {
     "SANDOWN": "NATIONAL_HUNT_model",
     "FFOS LAS": "NATIONAL_HUNT_model",
+    "DONCASTER": "NATIONAL_HUNT_model",
     "ASCOT": "ASCOT_model",
     "SALISBURY": "SALISBURY_model",
     "NEWBURY": "NEWBURY_model",
@@ -49,10 +50,10 @@ track_betting_config = {
             "stake_mode": "split_half"
         }
     },
-    "BATH": {
+    "RIPON": {
         "reverse_forecast_a": {
-            "allowed_field_sizes": [8],
-            "allowed_predicted_ranks": [1,4],
+            "allowed_field_sizes": [6],
+            "allowed_predicted_ranks": [1, 2],
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -0.5,
             "stake_mode": "split_half"
@@ -83,6 +84,7 @@ track_betting_config = {
             "stake_mode": "split_half"
         }
      },
+     
     "NEWBURY": {
         "single": {
             "bankroll_perc": 0.1,
@@ -105,6 +107,8 @@ track_betting_config = {
             "stake_mode": "split_half"   
      
         }
+
+        
       },
     "EPSOM": {
         "single": {
@@ -125,6 +129,29 @@ track_betting_config = {
             "allowed_predicted_ranks": [1,4],
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -1,
+            "stake_mode": "split_half"   
+     
+        }  
+    },
+    "DONCASTER": {
+        "single": {
+            "bankroll_perc": 0.1,
+            "min_ev_threshold": 0.00,
+            "min_kelly_fraction": 0.001,
+            "max_odds_threshold": 15.1,
+            "min_odds_threshold": 5.1,
+            "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
+            "fixed_stake_perc": 0.01,
+            "winrate_filter_type": "none",      # 'none', 'fixed', or 'dynamic'
+            "fixed_winrate_threshold": 0.03,
+            "allowed_predicted_ranks": [1,2,3,4,5],
+            "allowed_field_sizes": [7],
+        },
+        "reverse_forecast_a": {
+            "allowed_field_sizes": [7],
+            "allowed_predicted_ranks": [1,5],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
             "stake_mode": "split_half"   
      
         }  
@@ -276,7 +303,7 @@ track_betting_config = {
             "stake_mode": "split_half",  # special logic: A→B + B→A
    
         },
-        "reverse_forecast_B": {
+        "reverse_forecast_C": {
             "allowed_field_sizes": [9],
             "allowed_predicted_ranks": [1,2],
             "min_ev_threshold": -5.0,
