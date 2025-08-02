@@ -187,7 +187,7 @@ track_betting_config = {
         }    
      },
      "HAMILTON": {
-        "single": {
+         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.1,
             "min_kelly_fraction": 10,
