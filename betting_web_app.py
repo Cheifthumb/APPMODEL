@@ -187,6 +187,15 @@ if uploaded_file:
             preds.loc[preds['Odds_To_Use'] > config.get("max_odds_threshold", 100), 'Reject_Reason'] += 'odds_high|'
             preds.loc[preds['Odds_To_Use'] < config.get("min_odds_threshold", 0), 'Reject_Reason'] += 'odds_low|'
             preds.loc[~preds['Field_Size'].isin(config.get("allowed_field_sizes", range(1, 100))), 'Reject_Reason'] += 'field_size|'
+            
+            # ✅ Optional SP Range filter
+            min_sp = config.get("min_sp", None)
+            max_sp = config.get("max_sp", None)
+
+            if min_sp is not None:
+                preds.loc[preds['Odds_To_Use'] < min_sp, 'Reject_Reason'] += 'sp_below_min|'
+            if max_sp is not None:
+                preds.loc[preds['Odds_To_Use'] > max_sp, 'Reject_Reason'] += 'sp_above_max|'
 
             winrate_type = config.get("winrate_filter_type", "none")
             if winrate_type == "fixed":

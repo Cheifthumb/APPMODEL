@@ -12,7 +12,8 @@ track_model_map = {
     "REDCAR": "REDCAR_model",
     "NEWTON ABBOT": "NEWTON_ABBOT_model",
     "EPSOM": "FLAT_model",
-    "BATH": "FLAT_model"
+    "BATH": "FLAT_model",
+    "HAMILTON": "HAMILTON_model"
     # Add more as needed
 }
 
@@ -183,6 +184,39 @@ track_betting_config = {
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -0.5,
             "stake_mode": "split_half",  # special logic: A→B + B→A
+        }    
+     },
+     "HAMILTON": {
+        "single": {
+            "bankroll_perc": 0.1,
+            "min_ev_threshold": 0.1,
+            "min_kelly_fraction": 10,
+            "max_odds_threshold": 15.1,
+            "min_odds_threshold": 1.5,
+            "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
+            "fixed_stake_perc": 0.01,
+            "winrate_filter_type": "none",      # 'none', 'fixed', or 'dynamic'
+            "fixed_winrate_threshold": 0.03,
+            "allowed_predicted_ranks": [1,2,3,4,5],
+            "allowed_field_sizes": [4,5,6, 7],
+        },
+        "reverse_forecast_a": {
+            "allowed_field_sizes": [5],
+            "allowed_predicted_ranks": [1, 2],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half",  # special logic: A→B + B→A
+            "min_sp": 2.0,         # NEW — Optional min SP filter
+            "max_sp": 15.0         # NEW — Optional max SP filter
+        },
+        "reverse_forecast_B": {
+            "allowed_field_sizes": [7],
+            "allowed_predicted_ranks": [1,3],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half",  # special logic: A→B + B→A
+            "min_sp": 3.0,         # NEW — Optional min SP filter
+            "max_sp": 15.0         # NEW — Optional max SP filter
         }    
      },
      "SANDOWN": {
