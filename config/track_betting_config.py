@@ -52,7 +52,7 @@ track_betting_config = {
         }
     },
     "RIPON": {
-        "reverse_forecast_a": {
+        "reverse_forecast_A": {
             "allowed_field_sizes": [6],
             "allowed_predicted_ranks": [1, 2],
             "min_ev_threshold": -5.0,
