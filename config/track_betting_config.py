@@ -3,6 +3,7 @@ track_model_map = {
     "SANDOWN": "NATIONAL_HUNT_model",
     "FFOS LAS": "NATIONAL_HUNT_model",
     "DONCASTER": "NATIONAL_HUNT_model",
+    "CATTERICK": "NATIONAL_HUNT_model",
     "ASCOT": "ASCOT_model",
     "SALISBURY": "SALISBURY_model",
     "NEWBURY": "NEWBURY_model",
@@ -52,7 +53,7 @@ track_betting_config = {
         }
     },
     "RIPON": {
-        "reverse_forecast_A": {
+        "reverse_forecast_a": {
             "allowed_field_sizes": [6],
             "allowed_predicted_ranks": [1, 2],
             "min_ev_threshold": -5.0,
@@ -85,9 +86,29 @@ track_betting_config = {
             "stake_mode": "split_half"
         }
      },
+     "CATTERICK": {
+        "reverse_forecast_a": {
+            "allowed_field_sizes": [8],
+            "allowed_predicted_ranks": [1,2],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half",
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0         # NEW — Optional max SP filter
+        },
+        "reverse_forecast_b": {
+            "allowed_field_sizes": [9],
+            "allowed_predicted_ranks": [1, 4],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.25,
+            "stake_mode": "split_half",
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0 
+        }
+     },
      
     "NEWBURY": {
-        "single": {
+        "single_a": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.00,
             "min_kelly_fraction": 0.00,
@@ -101,13 +122,36 @@ track_betting_config = {
             "allowed_field_sizes": [7],
         },
         "reverse_forecast_a": {
-            "allowed_field_sizes": [6,7,8],
+            "allowed_field_sizes": [6],
             "allowed_predicted_ranks": [1,4],
             "min_ev_threshold": -5.0,
-            "min_kelly_fraction": -1,
-            "stake_mode": "split_half"   
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half",
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0   
+     
+        },
+        "reverse_forecast_b": {
+            "allowed_field_sizes": [7],
+            "allowed_predicted_ranks": [1,4],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half",
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0   
+     
+        },
+        "reverse_forecast_c": {
+            "allowed_field_sizes": [8],
+            "allowed_predicted_ranks": [1,4],
+            "min_ev_threshold": -5.0,
+            "min_kelly_fraction": -0.5,
+            "stake_mode": "split_half",
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0   
      
         }
+        
 
         
       },
@@ -333,16 +377,12 @@ track_betting_config = {
             "allowed_field_sizes": [7],
             "allowed_predicted_ranks": [1,2],
             "min_ev_threshold": -5.0,
-            "min_kelly_fraction": -0.5,
+            "min_kelly_fraction": -0.2,
             "stake_mode": "split_half",  # special logic: A→B + B→A
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0         # NEW — Optional max SP filter
    
-        },
-        "reverse_forecast_C": {
-            "allowed_field_sizes": [9],
-            "allowed_predicted_ranks": [1,2],
-            "min_ev_threshold": -5.0,
-            "min_kelly_fraction": -0.5,
-            "stake_mode": "split_half",  # special logic: A→B + B→A
+          
       }
 
     }
