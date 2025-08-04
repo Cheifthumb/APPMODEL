@@ -85,8 +85,8 @@ track_betting_config = {
             "min_kelly_fraction": -0.5,
             "stake_mode": "split_half"
         }
-     },
-     "CATTERICK": {
+    },
+    "CATTERICK": {
         "reverse_forecast_a": {
             "allowed_field_sizes": [8],
             "allowed_predicted_ranks": [1,2],
@@ -105,8 +105,7 @@ track_betting_config = {
             "min_sp": 2.5,         # NEW — Optional min SP filter
             "max_sp": 25.0 
         }
-     },
-     
+    },
     "NEWBURY": {
         "single_a": {
             "bankroll_perc": 0.1,
@@ -151,10 +150,7 @@ track_betting_config = {
             "max_sp": 25.0   
      
         }
-        
-
-        
-      },
+    },
     "EPSOM": {
         "single": {
             "bankroll_perc": 0.1,
@@ -177,7 +173,7 @@ track_betting_config = {
             "stake_mode": "split_half"   
      
         }  
-     },
+    },
      "DONCASTER": {
          "single": {
             "bankroll_perc": 0.1,
@@ -200,7 +196,7 @@ track_betting_config = {
             "stake_mode": "split_half"   
      
         }  
-     },
+    },
      "ASCOT": {
         "single": {
             "bankroll_perc": 0.1,
@@ -229,7 +225,7 @@ track_betting_config = {
             "min_kelly_fraction": -0.5,
             "stake_mode": "split_half",  # special logic: A→B + B→A
         }    
-     },
+    },
      "HAMILTON": {
          "single": {
             "bankroll_perc": 0.1,
@@ -262,7 +258,7 @@ track_betting_config = {
             "min_sp": 3.0,         # NEW — Optional min SP filter
             "max_sp": 15.0         # NEW — Optional max SP filter
         }    
-     },
+    },
      "SANDOWN": {
         "single": {
             "bankroll_perc": 0.1,
@@ -291,7 +287,7 @@ track_betting_config = {
             "min_kelly_fraction": -1.0,
             "stake_mode": "split_half",  # special logic: A→B + B→A
         } 
-      },
+    },
       "SALISBURY": {
         "single": {
             "bankroll_perc": 0.1,
@@ -321,8 +317,8 @@ track_betting_config = {
             "stake_mode": "split_half",  # special logic: A→B + B→A  
         }
     
-        },
-        "WINDSOR":  {
+    },
+     "WINDSOR":  {
         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.00,
@@ -351,8 +347,8 @@ track_betting_config = {
             "stake_mode": "split_half",  # special logic: A→B + B→A  
         }
     
-        },
-        "FFOS LAS":  {
+    },
+     "FFOS LAS":  {
         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.00,
@@ -384,6 +380,5 @@ track_betting_config = {
    
           
       }
-
-    }
+ }
 }
