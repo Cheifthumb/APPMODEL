@@ -107,7 +107,7 @@ track_betting_config = {
         }
     },
     "NEWBURY": {
-        "single_a": {
+        "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.00,
             "min_kelly_fraction": 0.00,
