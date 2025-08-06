@@ -4,6 +4,7 @@ track_model_map = {
     "FFOS LAS": "NATIONAL_HUNT_model",
     "DONCASTER": "NATIONAL_HUNT_model",
     "CATTERICK": "NATIONAL_HUNT_model",
+    "YARMOUTH": "NATIONAL_HUNT_model",
     "ASCOT": "ASCOT_model",
     "SALISBURY": "SALISBURY_model",
     "NEWBURY": "NEWBURY_model",
@@ -50,6 +51,17 @@ track_betting_config = {
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -0.5,
             "stake_mode": "split_half"
+        }
+    },
+    "YARMOUTH": {
+        "reverse_forecast_a": {
+            "allowed_field_sizes": [5],
+            "allowed_predicted_ranks": [1, 2],
+            "min_ev_threshold": -10,
+            "min_kelly_fraction": -10,
+            "stake_mode": "split_half",
+            "min_sp": 2.5,         # NEW — Optional min SP filter
+            "max_sp": 25.0         # NEW — Optional max SP filter
         }
     },
     "RIPON": {
