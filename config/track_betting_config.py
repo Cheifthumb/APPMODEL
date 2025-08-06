@@ -292,14 +292,14 @@ track_betting_config = {
             "min_kelly_fraction": -0.125,
             "stake_mode": "split_half",  # special logic: A→B + B→A
         },
-                "reverse_forecast_b": {
+        "reverse_forecast_b": {
             "allowed_field_sizes": [6],
             "allowed_predicted_ranks": [2,3],
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": -0.125,
             "stake_mode": "split_half",  # special logic: A→B + B→A
         },
-                "reverse_forecast_c": {
+        "reverse_forecast_c": {
             "allowed_field_sizes": [7],
             "allowed_predicted_ranks": [2,3],
             "min_ev_threshold": -5.0,
