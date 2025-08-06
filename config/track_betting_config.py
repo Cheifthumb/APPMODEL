@@ -53,7 +53,7 @@ track_betting_config = {
             "stake_mode": "split_half"
         }
     },
-     "YARMOUTH": {
+    "YARMOUTH": {
         "reverse_forecast_a": {
             "allowed_field_sizes": [5],
             "allowed_predicted_ranks": [1, 2],
