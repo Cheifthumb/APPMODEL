@@ -250,7 +250,7 @@ track_betting_config = {
             "winrate_filter_type": "none",      # 'none', 'fixed', or 'dynamic'
             "fixed_winrate_threshold": 0.03,
             "allowed_predicted_ranks": [1,2,3,4,5],
-            "allowed_field_sizes": [4,5,6, 7],
+            "allowed_field_sizes": [5,6],
         },
         "reverse_forecast_a": {
             "allowed_field_sizes": [5],

@@ -170,9 +170,17 @@ if uploaded_file:
             preds = track_df[info_cols].copy()
             preds['Predicted_Win_Probability'] = win_probs
             preds['Race_ID'] = preds['Date of Race'].astype(str) + "_" + preds['Time'].astype(str)
+
+            if track == 'HAMILTON':
+                # Use raw predicted probabilities (no normalization)
+                pass
+            else:
+                # Normalize predicted probabilities within each race to sum to 1
+                preds['Predicted_Win_Probability'] = preds.groupby('Race_ID')['Predicted_Win_Probability'].transform(lambda x: x / x.sum())
+
             preds['Odds_To_Use'] = preds['Industry SP']
-            preds['Predicted_Win_Probability'] = preds.groupby('Race_ID')['Predicted_Win_Probability'].transform(lambda x: x / x.sum())
             preds['Predicted_Rank'] = preds.groupby('Race_ID')['Predicted_Win_Probability'].rank(method='first', ascending=False)
+
 
             field_sizes = preds.groupby('Race_ID')['Horse'].count().rename('Field_Size')
             preds = preds.merge(field_sizes, left_on='Race_ID', right_index=True)
