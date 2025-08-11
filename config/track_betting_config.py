@@ -241,16 +241,16 @@ track_betting_config = {
      "HAMILTON": {
          "single": {
             "bankroll_perc": 0.1,
-            "min_ev_threshold": 0.1,
-            "min_kelly_fraction": 10,
+            "min_ev_threshold": 1.5,
+            "min_kelly_fraction": 0.00,
             "max_odds_threshold": 15.1,
             "min_odds_threshold": 1.5,
             "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
             "fixed_stake_perc": 0.01,
-            "winrate_filter_type": "none",      # 'none', 'fixed', or 'dynamic'
+            "winrate_filter_type": "dynamic",      # 'none', 'fixed', or 'dynamic'
             "fixed_winrate_threshold": 0.03,
-            "allowed_predicted_ranks": [1,2,3,4,5],
-            "allowed_field_sizes": [5,6],
+            "allowed_predicted_ranks": [1,2,3,4,5,6],
+            "allowed_field_sizes": [6],
         },
         "reverse_forecast_a": {
             "allowed_field_sizes": [5],
