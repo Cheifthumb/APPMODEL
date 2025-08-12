@@ -167,16 +167,17 @@ if uploaded_file:
 
             win_probs = model.predict_proba(X)[:, 1]
 
-            preds = track_df[info_cols].copy()
-            preds['Predicted_Win_Probability'] = win_probs
-            preds['Race_ID'] = preds['Date of Race'].astype(str) + "_" + preds['Time'].astype(str)
+            # Determine if normalization should be skipped
+            skip_normalization = False
 
-            if track == ['HAMILTON','SALISBURY']:
-                # Use raw predicted probabilities (no normalization)
-                pass
-            else:
-                # Normalize predicted probabilities within each race to sum to 1
+            if track == 'HAMILTON' and mode == 'single':
+                skip_normalization = True
+            elif track == 'SALISBURY' and mode.startswith('reverse_forecast'):
+                skip_normalization = True
+
+            if not skip_normalization:
                 preds['Predicted_Win_Probability'] = preds.groupby('Race_ID')['Predicted_Win_Probability'].transform(lambda x: x / x.sum())
+
 
             preds['Odds_To_Use'] = preds['Industry SP']
             preds['Predicted_Rank'] = preds.groupby('Race_ID')['Predicted_Win_Probability'].rank(method='first', ascending=False)
