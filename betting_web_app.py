@@ -171,7 +171,7 @@ if uploaded_file:
             preds['Predicted_Win_Probability'] = win_probs
             preds['Race_ID'] = preds['Date of Race'].astype(str) + "_" + preds['Time'].astype(str)
 
-            if track == 'HAMILTON':
+            if track == ['HAMILTON','SALISBURY']:
                 # Use raw predicted probabilities (no normalization)
                 pass
             else:

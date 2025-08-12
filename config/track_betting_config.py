@@ -1,12 +1,12 @@
 # track_betting_config.py
 track_model_map = {
     "SANDOWN": "NATIONAL_HUNT_model",
-    "FFOS LAS": "NATIONAL_HUNT_model",
+    "FFOS LAS": "NATIONAL_HUNT_model_OLD",
     "DONCASTER": "NATIONAL_HUNT_model",
     "CATTERICK": "NATIONAL_HUNT_model",
     "YARMOUTH": "NATIONAL_HUNT_model",
     "ASCOT": "ASCOT_model",
-    "SALISBURY": "SALISBURY_model",
+    "SALISBURY": "FLAT_model_OLD",
     "NEWBURY": "NEWBURY_model",
     "NEWMARKET": "NEWMARKET_model",
     "WINDSOR": "WINDSOR_model",
@@ -321,7 +321,7 @@ track_betting_config = {
         "single": {
             "bankroll_perc": 0.1,
             "min_ev_threshold": 0.00,
-            "min_kelly_fraction": 0.00,
+            "min_kelly_fraction": 10,
             "max_odds_threshold": 10.1,
             "min_odds_threshold": 1.5,
             "stake_mode": "kelly",              # 'kelly', 'fixed', or 'winrate'
@@ -332,14 +332,16 @@ track_betting_config = {
             "allowed_field_sizes": [5],
         },
         "reverse_forecast_a": {
-            "allowed_field_sizes": [5,6,7],
-            "allowed_predicted_ranks": [1,4],
-            "min_ev_threshold": -5.0,
-            "min_kelly_fraction": -0.5,
-            "stake_mode": "split_half",  # special logic: A→B + B→A
+            "allowed_field_sizes": [5],
+            "allowed_predicted_ranks": [2,3],
+            "min_ev_threshold": 0.00,
+            "min_kelly_fraction": 0.00,
+            "stake_mode": "split_half",
+            "min_sp": 2,         # NEW — Optional min SP filter
+            "max_sp": 205.0  # special logic: A→B + B→A
         },
         "reverse_forecast_B": {
-            "allowed_field_sizes": [7],
+            "allowed_field_sizes": [13],
             "allowed_predicted_ranks": [1,2],
             "min_ev_threshold": -5.0,
             "min_kelly_fraction": 1,
