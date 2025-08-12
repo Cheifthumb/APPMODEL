@@ -1,12 +1,12 @@
 # track_betting_config.py
 track_model_map = {
     "SANDOWN": "NATIONAL_HUNT_model",
-    "FFOS LAS": "NATIONAL_HUNT_model_OLD",
+    "FFOS LAS": "NATIONAL_HUNTold_model",
     "DONCASTER": "NATIONAL_HUNT_model",
     "CATTERICK": "NATIONAL_HUNT_model",
     "YARMOUTH": "NATIONAL_HUNT_model",
     "ASCOT": "ASCOT_model",
-    "SALISBURY": "FLAT_model_OLD",
+    "SALISBURY": "FLATold_model",
     "NEWBURY": "NEWBURY_model",
     "NEWMARKET": "NEWMARKET_model",
     "WINDSOR": "WINDSOR_model",
