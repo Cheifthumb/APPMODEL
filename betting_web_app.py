@@ -167,9 +167,13 @@ if uploaded_file:
 
             win_probs = model.predict_proba(X)[:, 1]
 
-            # Determine if normalization should be skipped
-            skip_normalization = False
+            win_probs = model.predict_proba(X)[:, 1]
 
+            preds = track_df[info_cols].copy()
+            preds['Predicted_Win_Probability'] = win_probs
+            preds['Race_ID'] = preds['Date of Race'].astype(str) + "_" + preds['Time'].astype(str)
+
+            skip_normalization = False
             if track == 'HAMILTON' and mode == 'single':
                 skip_normalization = True
             elif track == 'SALISBURY' and mode.startswith('reverse_forecast'):
