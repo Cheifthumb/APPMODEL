@@ -2,7 +2,7 @@
 track_model_map = {
     "SANDOWN": "NATIONAL_HUNT_model",
     "FFOS LAS": "NATIONAL_HUNTold_model",
-    "DONCASTER": "NATIONAL_HUNT_model",
+    "DONCASTER": "NATIONAL_HUNTold_model",
     "CATTERICK": "NATIONAL_HUNT_model",
     "YARMOUTH": "NATIONAL_HUNT_model",
     "ASCOT": "ASCOT_model",
